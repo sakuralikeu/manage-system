@@ -21,3 +21,18 @@
 - 运行 mvn test -q，依赖解析失败（本地 Maven 仓库或镜像问题导致依赖无法下载）
 备注：
 - 测试接口为 GET /api/db/time，返回 ISO 8601 格式且带 +08:00 时区偏移
+
+日期：2026-02-09
+事项：实施计划第 1.1.4 步（初始化前端 Vue 3 项目）
+变更：
+- 使用 Vite 创建前端项目目录 performance-management-frontend
+- 更新 [package.json](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/package.json) 依赖版本以适配 Vue 3.4.x
+- 新增基础目录结构：src/router、src/store、src/api、src/views、src/components
+- 修改入口 [main.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/main.js) 注册 Element Plus、Pinia、Router
+- 修改 [App.vue](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/App.vue) 使用 <router-view />
+- 新增首页视图 [HomeView.vue](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/views/HomeView.vue)
+验证：
+- 执行 npm install（使用 --legacy-peer-deps 解决上游 peer 版本差异），安装完成
+- 启动开发服务器：npm run dev，访问 http://localhost:3000 正常显示页面
+备注：
+- 依赖版本固定至与技术栈文档兼容的稳定版本，后续可在 1.1.5 步中完善代理与自动导入配置

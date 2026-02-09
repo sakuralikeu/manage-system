@@ -1,0 +1,29 @@
+{
+  "name": "performance-management-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "3.4.15",
+    "vue-router": "4.2.5",
+    "pinia": "^2.1.7",
+    "element-plus": "^2.5.6",
+    "axios": "^1.6.7",
+    "echarts": "^5.5.0",
+    "dayjs": "^1.11.10",
+    "nprogress": "^0.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.3",
+    "vite": "^5.0.12",
+    "@vue/compiler-sfc": "3.4.15",
+    "eslint": "^8.56.0",
+    "eslint-plugin-vue": "^9.20.1",
+    "sass": "^1.70.0"
+  }
+}
