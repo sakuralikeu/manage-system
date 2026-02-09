@@ -26,6 +26,7 @@
   
 - [performance-management-frontend/package.json](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/package.json)：前端依赖、脚本配置，版本固定以适配 Vue 3.4.x
 - [performance-management-frontend/src/main.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/main.js)：应用入口，注册 Element Plus、Pinia、Router
+- [performance-management-frontend/vite.config.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/vite.config.js)：Vite 开发服务器配置（端口 3000、/api 代理、@ 别名、Element Plus 自动导入）
 - [performance-management-frontend/src/router](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/router)：路由配置（首页 Home）
 - [performance-management-frontend/src/store](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/store)：状态管理（Pinia 初始化）
 - [performance-management-frontend/src/api](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/api)：HTTP 客户端（Axios 实例）
@@ -39,3 +40,5 @@
 - 数据库脚本：[db/schema.sql](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/db/schema.sql) 创建基础表与5个预设角色数据
   
 - 前端兼容性策略：固定 Vue 至 3.4.15 并约束 vue-router 至 4.2.5，避免新版本对 3.5+ 的 peer 依赖造成安装失败；开发服务器端口使用 3000，后续在 1.1.5 步中配置代理与别名
+  
+- 自动导入策略：通过 unplugin-auto-import 与 unplugin-vue-components 搭配 ElementPlusResolver 自动按需引入组件与样式，减少手动注册与引入

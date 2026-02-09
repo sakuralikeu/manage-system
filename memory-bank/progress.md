@@ -36,3 +36,19 @@
 - 启动开发服务器：npm run dev，访问 http://localhost:3000 正常显示页面
 备注：
 - 依赖版本固定至与技术栈文档兼容的稳定版本，后续可在 1.1.5 步中完善代理与自动导入配置
+
+日期：2026-02-09
+事项：实施计划第 1.1.5 步（配置前端开发环境和代理）
+变更：
+- 更新 [vite.config.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/vite.config.js) 配置：
+  - server.port=3000
+  - 代理 /api 到 http://localhost:8080
+  - 路径别名 @ 指向 src
+  - 启用 unplugin-auto-import 与 unplugin-vue-components 自动导入 Element Plus
+- 更新 [package.json](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/package.json) 增加 auto-import 与 components 插件依赖
+- 调整 [main.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/main.js)，去除手动 Element Plus 注册
+- 新增别名验证 [hello.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/utils/hello.js) 并在 [HomeView.vue](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/views/HomeView.vue) 引用
+验证：
+- 重启开发服务器：npm run dev，访问 http://localhost:3000 正常
+备注：
+- 未启动后端服务，/api 代理转发仅配置完成，尚未联调验证
