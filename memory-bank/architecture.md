@@ -30,14 +30,32 @@
 - [performance-management/src/main/java/com/company/performance/mapper/RoleMapper.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/mapper/RoleMapper.java)：角色数据访问，提供按角色名查询
 - [performance-management/src/main/java/com/company/performance/config/JwtProperties.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/config/JwtProperties.java)：JWT 配置读取（secret、expiration）
 - [performance-management/src/main/java/com/company/performance/utils/JwtUtil.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/utils/JwtUtil.java)：JWT 生成、校验与解析工具
+- [performance-management/src/main/java/com/company/performance/dto/request/LoginRequest.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/request/LoginRequest.java)：登录请求 DTO
+- [performance-management/src/main/java/com/company/performance/dto/response/LoginResponse.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/response/LoginResponse.java)：登录响应 DTO
+- [performance-management/src/main/java/com/company/performance/common/exception/BusinessException.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/common/exception/BusinessException.java)：业务异常定义
+- [performance-management/src/main/java/com/company/performance/service/UserService.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/service/UserService.java)：用户服务接口
+- [performance-management/src/main/java/com/company/performance/service/impl/UserServiceImpl.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/service/impl/UserServiceImpl.java)：登录逻辑实现与 JWT 生成
+- [performance-management/src/main/java/com/company/performance/common/Result.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/common/Result.java)：统一响应结构
+- [performance-management/src/main/java/com/company/performance/controller/AuthController.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/controller/AuthController.java)：登录接口控制器
+- [performance-management/src/main/java/com/company/performance/controller/HealthController.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/controller/HealthController.java)：健康检查接口
+- [performance-management/src/main/java/com/company/performance/config/JwtAuthenticationFilter.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/config/JwtAuthenticationFilter.java)：JWT 认证过滤器
+- [performance-management/src/main/java/com/company/performance/config/SecurityConfig.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/config/SecurityConfig.java)：安全配置与访问规则
+- [performance-management/src/main/java/com/company/performance/common/exception/GlobalExceptionHandler.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/common/exception/GlobalExceptionHandler.java)：全局异常处理与统一响应
+- [performance-management/src/main/java/com/company/performance/dto/response/AuthMeResponse.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/response/AuthMeResponse.java)：登录态校验响应
+- [performance-management/src/main/java/com/company/performance/service/TokenService.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/service/TokenService.java)：Token 黑名单与刷新抽象
+- [performance-management/src/main/java/com/company/performance/service/impl/RedisTokenService.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/service/impl/RedisTokenService.java)：Redis 黑名单与刷新 token 存储实现
+- [performance-management/src/main/java/com/company/performance/dto/response/AuthRefreshResponse.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/response/AuthRefreshResponse.java)：刷新 token 响应
+- [performance-management/src/main/java/com/company/performance/dto/request/RefreshTokenRequest.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/request/RefreshTokenRequest.java)：刷新 token 请求
+- [performance-management/src/main/java/com/company/performance/dto/request/LogoutRequest.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/request/LogoutRequest.java)：登出请求
   
 - [performance-management-frontend/package.json](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/package.json)：前端依赖、脚本配置，版本固定以适配 Vue 3.4.x
 - [performance-management-frontend/src/main.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/main.js)：应用入口，注册 Element Plus、Pinia、Router
 - [performance-management-frontend/vite.config.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/vite.config.js)：Vite 开发服务器配置（端口 3000、/api 代理、@ 别名、Element Plus 自动导入）
-- [performance-management-frontend/src/router](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/router)：路由配置（首页 Home）
+- [performance-management-frontend/src/router](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/router)：路由配置（登录与首页）
 - [performance-management-frontend/src/store](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/store)：状态管理（Pinia 初始化）
 - [performance-management-frontend/src/api](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/api)：HTTP 客户端（Axios 实例）
 - [performance-management-frontend/src/views/HomeView.vue](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/views/HomeView.vue)：首页视图，验证 Element Plus
+- [performance-management-frontend/src/views/LoginView.vue](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/views/LoginView.vue)：登录视图，提交登录并保存 token
   
 新增架构洞察（2026-02-09）：
 - 数据源与连接池：application.yml 配置 MySQL（serverTimezone=Asia/Shanghai）与 HikariCP（最大 20，最小空闲 5）
@@ -51,3 +69,17 @@
 - 自动导入策略：通过 unplugin-auto-import 与 unplugin-vue-components 搭配 ElementPlusResolver 自动按需引入组件与样式，减少手动注册与引入
   
 - JWT 策略：secret 与有效期通过配置注入，Token 使用 HS256 签名并在 payload 中携带 userId
+  
+- 登录策略：使用 BCrypt 校验密码，用户名不存在或密码错误抛出业务异常
+  
+- 响应策略：控制器统一返回 Result 包装结构，包含 code、message、data、timestamp
+  
+- 安全策略：/api/auth/login 与 /health 匿名访问，/api/** 强制认证；CSRF 关闭，Session 无状态
+  
+- 异常策略：业务异常与参数校验异常返回 code=400，系统异常返回 code=500
+  
+- 登录前端策略：Element Plus 表单提交登录，成功后写入 localStorage 并跳转首页
+  
+- 前端认证策略：Axios 自动附带 token，401 自动跳转登录；路由守卫校验 token 并调用 /api/auth/me
+  
+- Token 策略：登录返回 access/refresh token；黑名单与 refresh token 存储在 Redis，Redis 不可用时降级并记录警告

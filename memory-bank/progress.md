@@ -85,3 +85,89 @@
 - 单元测试：mvn test "-Dmaven.repo.local=.../.mvn-repo" 通过
 备注：
 - 若本机 Maven 本地仓库配置不可写，可继续使用 -Dmaven.repo.local 指定工作区内仓库
+
+日期：2026-02-09
+事项：实施计划第 1.2.4 步（实现用户登录 Service）
+变更：
+- 新增请求 DTO [LoginRequest.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/request/LoginRequest.java)
+- 新增响应 DTO [LoginResponse.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/response/LoginResponse.java)
+- 新增异常类 [BusinessException.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/common/exception/BusinessException.java)
+- 新增服务接口 [UserService.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/service/UserService.java)
+- 新增服务实现 [UserServiceImpl.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/service/impl/UserServiceImpl.java) 实现登录逻辑与 JWT 生成
+- 新增单元测试 [UserServiceTest.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/test/java/com/company/performance/service/UserServiceTest.java)
+验证：
+- 运行 mvn test "-Dmaven.repo.local=.../.mvn-repo" 通过
+
+日期：2026-02-10
+事项：实施计划第 1.2.5 步（实现登录 Controller 和统一响应格式）
+变更：
+- 新增统一响应 [Result.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/common/Result.java)
+- 新增控制器 [AuthController.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/controller/AuthController.java)，提供 POST /api/auth/login
+- 新增控制器测试 [AuthControllerTest.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/test/java/com/company/performance/controller/AuthControllerTest.java)
+验证：
+- 运行 mvn test "-Dmaven.repo.local=.../.mvn-repo" 通过
+
+日期：2026-02-10
+事项：实施计划第 1.2.6 步（配置 Spring Security）
+变更：
+- 新增 JWT 过滤器 [JwtAuthenticationFilter.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/config/JwtAuthenticationFilter.java)
+- 新增安全配置 [SecurityConfig.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/config/SecurityConfig.java)：登录与健康检查匿名访问，其他 /api/** 需认证；禁用 CSRF 与 Session
+- 新增健康检查 [HealthController.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/controller/HealthController.java)
+- 补充安全测试 [SecurityConfigTest.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/test/java/com/company/performance/config/SecurityConfigTest.java)
+- JWT 工具类新增 getUsername 方法 [JwtUtil.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/utils/JwtUtil.java)
+验证：
+- 运行 mvn test "-Dmaven.repo.local=.../.mvn-repo" 通过
+
+日期：2026-02-10
+事项：实施计划第 1.2.7 步（实现全局异常处理）
+变更：
+- 新增全局异常处理 [GlobalExceptionHandler.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/common/exception/GlobalExceptionHandler.java)
+- 新增异常测试控制器 [TestExceptionController.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/test/java/com/company/performance/controller/TestExceptionController.java)
+- 新增异常处理测试 [GlobalExceptionHandlerTest.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/test/java/com/company/performance/common/exception/GlobalExceptionHandlerTest.java)
+验证：
+- 运行 mvn test "-Dmaven.repo.local=.../.mvn-repo" 通过
+
+日期：2026-02-10
+事项：实施计划第 1.2.8 步（实现前端登录页面）
+变更：
+- 新增登录视图 [LoginView.vue](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/views/LoginView.vue)
+- 更新前端路由 [router/index.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/router/index.js) 增加 /login 与 /home
+验证：
+- 前端构建：npm run build
+
+日期：2026-02-10
+事项：实施计划第 1.2.9 步（实现前端 Axios 拦截器）
+变更：
+- 更新 [http.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/api/http.js)：
+  - 请求拦截器自动追加 Authorization Bearer token
+  - 响应拦截器统一处理 code!=200 与 401
+验证：
+- 前端构建：npm run build
+
+日期：2026-02-10
+事项：实施计划第 1.2.10 步（实现前端路由守卫）
+变更：
+- 更新 [router/index.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/router/index.js)：
+  - 登录页与首页路由守卫重定向
+  - 进入首页时调用 /api/auth/me 校验 token
+- 新增后端接口 [AuthMeResponse.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/response/AuthMeResponse.java)
+- 更新 [AuthController.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/controller/AuthController.java) 增加 GET /api/auth/me
+验证：
+- 后端测试：mvn test "-Dmaven.repo.local=.../.mvn-repo"
+- 前端构建：npm run build
+
+日期：2026-02-10
+事项：实施计划第 1.2.11 步（Redis 集成与 JWT 刷新/黑名单）
+变更：
+- 更新 [application.yml](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/resources/application.yml) 增加 Redis 连接与 jwt.refresh-expiration
+- 新增 TokenService 抽象 [TokenService.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/service/TokenService.java)
+- 新增 Redis 实现 [RedisTokenService.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/service/impl/RedisTokenService.java) 支持黑名单与刷新 token 存储（Redis 不可用时降级并记录警告）
+- 更新 JWT 工具类 [JwtUtil.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/utils/JwtUtil.java) 支持 access/refresh 类型与过期解析
+- 更新登录服务 [UserServiceImpl.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/service/impl/UserServiceImpl.java) 返回 access/refresh 并存储 refresh
+- 新增刷新与登出接口 [AuthController.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/controller/AuthController.java)
+- 新增 DTO：[AuthRefreshResponse.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/response/AuthRefreshResponse.java)、[RefreshTokenRequest.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/request/RefreshTokenRequest.java)、[LogoutRequest.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/request/LogoutRequest.java)
+- 登录响应新增 refreshToken 字段 [LoginResponse.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/dto/response/LoginResponse.java)
+- 前端保存 refreshToken 并在 401 时清理 [LoginView.vue](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/views/LoginView.vue)、[http.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/api/http.js)
+验证：
+- 后端测试：mvn test "-Dmaven.repo.local=.../.mvn-repo"
+- 前端构建：npm run build

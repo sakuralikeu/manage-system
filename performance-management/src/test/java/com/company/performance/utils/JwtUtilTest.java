@@ -23,6 +23,7 @@ class JwtUtilTest {
         JwtProperties properties = new JwtProperties();
         properties.setSecret(SECRET);
         properties.setExpiration(EXPIRATION);
+        properties.setRefreshExpiration(EXPIRATION);
         return new JwtUtil(properties);
     }
 
@@ -41,6 +42,7 @@ class JwtUtilTest {
         JwtProperties properties = new JwtProperties();
         properties.setSecret("wrong-secret-please-change-wrong-secret-please-change");
         properties.setExpiration(86400000);
+        properties.setRefreshExpiration(86400000);
         JwtUtil wrong = new JwtUtil(properties);
         assertFalse(wrong.validateToken(token));
     }
