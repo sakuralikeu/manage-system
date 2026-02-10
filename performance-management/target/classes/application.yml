@@ -36,3 +36,7 @@ logging:
     com.baomidou.mybatisplus: debug
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n"
+
+jwt:
+  secret: ${JWT_SECRET:changeit-please-set-changeit-please-set}
+  expiration: 86400000

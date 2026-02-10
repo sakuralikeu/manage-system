@@ -23,6 +23,13 @@
 - [performance-management/src/main/java/com/company/performance/utils](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/utils)：工具类集合
 - [performance-management/src/main/resources/application.yml](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/resources/application.yml)：基础 Spring 配置入口
 - [performance-management/src/main/java/com/company/performance/controller/DatabaseTimeController.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/controller/DatabaseTimeController.java)：数据库时间校验接口
+- [performance-management/src/main/java/com/company/performance/common/enums/PositionType.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/common/enums/PositionType.java)：岗位类型枚举（PRESALE、RD），实现 IEnum 以便映射
+- [performance-management/src/main/java/com/company/performance/entity/User.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/entity/User.java)：用户实体映射 users 表，password 在 JSON 序列化中忽略
+- [performance-management/src/main/java/com/company/performance/mapper/UserMapper.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/mapper/UserMapper.java)：用户数据访问，继承 BaseMapper 并提供 findByUsername
+- [performance-management/src/main/java/com/company/performance/entity/Role.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/entity/Role.java)：角色实体映射 roles 表，permissions 使用 JSON 类型处理
+- [performance-management/src/main/java/com/company/performance/mapper/RoleMapper.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/mapper/RoleMapper.java)：角色数据访问，提供按角色名查询
+- [performance-management/src/main/java/com/company/performance/config/JwtProperties.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/config/JwtProperties.java)：JWT 配置读取（secret、expiration）
+- [performance-management/src/main/java/com/company/performance/utils/JwtUtil.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/utils/JwtUtil.java)：JWT 生成、校验与解析工具
   
 - [performance-management-frontend/package.json](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/package.json)：前端依赖、脚本配置，版本固定以适配 Vue 3.4.x
 - [performance-management-frontend/src/main.js](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management-frontend/src/main.js)：应用入口，注册 Element Plus、Pinia、Router
@@ -42,3 +49,5 @@
 - 前端兼容性策略：固定 Vue 至 3.4.15 并约束 vue-router 至 4.2.5，避免新版本对 3.5+ 的 peer 依赖造成安装失败；开发服务器端口使用 3000，后续在 1.1.5 步中配置代理与别名
   
 - 自动导入策略：通过 unplugin-auto-import 与 unplugin-vue-components 搭配 ElementPlusResolver 自动按需引入组件与样式，减少手动注册与引入
+  
+- JWT 策略：secret 与有效期通过配置注入，Token 使用 HS256 签名并在 payload 中携带 userId

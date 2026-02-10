@@ -52,3 +52,36 @@
 - 重启开发服务器：npm run dev，访问 http://localhost:3000 正常
 备注：
 - 未启动后端服务，/api 代理转发仅配置完成，尚未联调验证
+
+日期：2026-02-09
+事项：实施计划第 1.2.1 步（创建 User 实体类和 Mapper）
+变更：
+- 新增枚举 [PositionType.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/common/enums/PositionType.java)
+- 新增实体 [User.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/entity/User.java)：@TableName("users")、@TableId(IdType.AUTO)、password 使用 @JsonIgnore、时间字段 LocalDateTime、positionType 使用枚举
+- 新增 Mapper [UserMapper.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/mapper/UserMapper.java)：继承 BaseMapper<User>，提供 findByUsername 查询
+验证：
+- 运行 mvn -DskipTests clean compile，编译成功
+备注：
+- 后续可基于 UserMapper 在服务层使用 QueryWrapper 实现更多查询与分页
+
+日期：2026-02-09
+事项：实施计划第 1.2.2 步（创建 Role 实体类和 Mapper）
+变更：
+- 新增实体 [Role.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/entity/Role.java)：@TableName(autoResultMap = true)，permissions 使用 JacksonTypeHandler 映射 JSON
+- 新增 Mapper [RoleMapper.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/mapper/RoleMapper.java)：继承 BaseMapper<Role>，提供 findByRoleName 查询
+验证：
+- 运行 mvn -DskipTests clean compile，编译成功
+备注：
+- 测试占位 [RoleMapperTest.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/test/java/com/company/performance/mapper/RoleMapperTest.java) 已添加并默认禁用，需本地 MySQL 与预置数据
+
+日期：2026-02-09
+事项：实施计划第 1.2.3 步（实现 JWT 工具类）
+变更：
+- 在配置文件新增 jwt.secret 与 jwt.expiration（默认 24 小时），secret 支持环境变量覆盖
+- 新增配置类 [JwtProperties.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/config/JwtProperties.java)
+- 新增工具类 [JwtUtil.java](file:///e:/Users/Fengye/Documents/软开/内部管理系统/manage-system/performance-management/src/main/java/com/company/performance/utils/JwtUtil.java) 提供生成、校验与解析 userId 方法
+验证：
+- 编译：mvn -DskipTests clean compile，成功
+- 单元测试：mvn test "-Dmaven.repo.local=.../.mvn-repo" 通过
+备注：
+- 若本机 Maven 本地仓库配置不可写，可继续使用 -Dmaven.repo.local 指定工作区内仓库
