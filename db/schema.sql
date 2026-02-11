@@ -57,6 +57,60 @@ CREATE TABLE IF NOT EXISTS audit_logs (
   CONSTRAINT fk_audit_logs_users_user_id FOREIGN KEY (user_id) REFERENCES users (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS projects (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  project_name VARCHAR(200) NOT NULL,
+  project_code VARCHAR(50) NOT NULL,
+  project_type VARCHAR(32) NOT NULL,
+  allocation_method VARCHAR(32) NOT NULL,
+  presale_ratio DECIMAL(5,4),
+  rd_ratio DECIMAL(5,4),
+  manager_id BIGINT UNSIGNED NOT NULL,
+  status VARCHAR(32) NOT NULL DEFAULT 'IN_PROGRESS',
+  total_virtual_hours DECIMAL(10,2),
+  supervisor_approved TINYINT(1) NOT NULL DEFAULT 0,
+  supervisor_id BIGINT UNSIGNED,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  finished_at DATETIME,
+  PRIMARY KEY (id),
+  UNIQUE KEY uk_projects_project_code (project_code),
+  KEY idx_projects_manager_id (manager_id),
+  KEY idx_projects_supervisor_id (supervisor_id),
+  CONSTRAINT fk_projects_users_manager_id FOREIGN KEY (manager_id) REFERENCES users (id),
+  CONSTRAINT fk_projects_users_supervisor_id FOREIGN KEY (supervisor_id) REFERENCES users (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS project_nodes (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  project_id BIGINT UNSIGNED NOT NULL,
+  node_name VARCHAR(50) NOT NULL,
+  node_order INT NOT NULL,
+  weight DECIMAL(5,4) NOT NULL,
+  PRIMARY KEY (id),
+  KEY idx_project_nodes_project_id (project_id),
+  CONSTRAINT fk_project_nodes_projects_project_id FOREIGN KEY (project_id) REFERENCES projects (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS project_participation (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  project_id BIGINT UNSIGNED NOT NULL,
+  node_id BIGINT UNSIGNED NOT NULL,
+  user_id BIGINT UNSIGNED NOT NULL,
+  estimated_hours DECIMAL(8,2),
+  actual_hours DECIMAL(8,2),
+  contribution_ratio DECIMAL(5,4),
+  user_confirmed TINYINT(1) NOT NULL DEFAULT 0,
+  confirmed_at DATETIME,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_project_participation_project_id (project_id),
+  KEY idx_project_participation_node_id (node_id),
+  KEY idx_project_participation_user_id (user_id),
+  CONSTRAINT fk_project_participation_projects_project_id FOREIGN KEY (project_id) REFERENCES projects (id),
+  CONSTRAINT fk_project_participation_project_nodes_node_id FOREIGN KEY (node_id) REFERENCES project_nodes (id),
+  CONSTRAINT fk_project_participation_users_user_id FOREIGN KEY (user_id) REFERENCES users (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 INSERT INTO roles (id, role_name, description, permissions)
 VALUES
   (1, 'DIRECTOR', '总监/副总监', '{
@@ -108,3 +162,13 @@ VALUES
 ON DUPLICATE KEY UPDATE
   description = VALUES(description),
   permissions = VALUES(permissions);
+
+INSERT INTO system_config (config_key, config_value, description)
+VALUES (
+  'default_node_weights',
+  '[{"name":"商机","weight":0.02},{"name":"项目建议书","weight":0.03},{"name":"可研","weight":0.05},{"name":"招投标","weight":0.05},{"name":"前向签约","weight":0.05},{"name":"系统研发","weight":0.50},{"name":"后向采购","weight":0.05},{"name":"后向签约","weight":0.05},{"name":"项目试运行","weight":0.10},{"name":"初验","weight":0.05},{"name":"终验","weight":0.05}]',
+  '默认项目节点权重'
+)
+ON DUPLICATE KEY UPDATE
+  config_value = VALUES(config_value),
+  description = VALUES(description);
