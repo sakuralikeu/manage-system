@@ -1,3 +1,10 @@
+com\company\performance\common\exception\GlobalExceptionHandlerTest.class
+com\company\performance\controller\AuthControllerTest.class
 com\company\performance\mapper\RoleMapperTest.class
 com\company\performance\utils\JwtUtilTest.class
 com\company\performance\mapper\UserMapperTest.class
+com\company\performance\controller\TestSecureController.class
+com\company\performance\service\UserServiceTest.class
+com\company\performance\config\SecurityConfigTest$TestBeans.class
+com\company\performance\controller\TestExceptionController.class
+com\company\performance\config\SecurityConfigTest.class

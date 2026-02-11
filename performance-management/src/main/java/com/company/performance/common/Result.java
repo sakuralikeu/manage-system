@@ -34,6 +34,22 @@ public class Result<T> {
         return result;
     }
 
+    public static <T> Result<T> forbidden(String message) {
+        Result<T> result = new Result<>();
+        result.setCode(403);
+        result.setMessage(message);
+        result.setTimestamp(System.currentTimeMillis());
+        return result;
+    }
+
+    public static <T> Result<T> notFound(String message) {
+        Result<T> result = new Result<>();
+        result.setCode(404);
+        result.setMessage(message);
+        result.setTimestamp(System.currentTimeMillis());
+        return result;
+    }
+
     public static <T> Result<T> serverError(String message) {
         Result<T> result = new Result<>();
         result.setCode(500);

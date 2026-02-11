@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
+import ProjectListView from '../views/ProjectListView.vue'
+import ProjectCreateView from '../views/ProjectCreateView.vue'
+import ProjectDetailView from '../views/ProjectDetailView.vue'
 import http from '@/api/http.js'
 
 const routes = [
@@ -17,6 +20,21 @@ const routes = [
     path: '/home',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/projects',
+    name: 'projects',
+    component: ProjectListView
+  },
+  {
+    path: '/projects/create',
+    name: 'project-create',
+    component: ProjectCreateView
+  },
+  {
+    path: '/projects/:id',
+    name: 'project-detail',
+    component: ProjectDetailView
   }
 ]
 
@@ -33,9 +51,9 @@ router.beforeEach(async (to) => {
     return { path: '/login' }
   }
   if (token && isPublic(to.path)) {
-    return { path: '/home' }
+    return { path: '/projects' }
   }
-  if (token && to.path === '/home') {
+  if (token && !isPublic(to.path)) {
     try {
       await http.get('/api/auth/me')
     } catch (err) {

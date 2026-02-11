@@ -35,6 +35,20 @@ public class GlobalExceptionHandler {
         return Result.badRequest(message);
     }
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Result<Void> handleNotFound(ResourceNotFoundException ex) {
+        logger.warn("Resource not found", ex);
+        return Result.notFound(ex.getMessage());
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public Result<Void> handleForbidden(ForbiddenException ex) {
+        logger.warn("Forbidden", ex);
+        return Result.forbidden(ex.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Result<Void> handleException(Exception ex) {

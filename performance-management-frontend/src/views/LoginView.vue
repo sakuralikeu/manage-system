@@ -52,7 +52,7 @@ const onSubmit = async () => {
     localStorage.setItem('token', payload.data.token)
     localStorage.setItem('refreshToken', payload.data.refreshToken)
     ElMessage.success('登录成功')
-    router.push('/home')
+    router.push('/projects')
   } catch (err) {
   } finally {
     loading.value = false
